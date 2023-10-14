@@ -34,14 +34,14 @@ $headings: "h1", "h2", "h3", "h4", "h5", "h6";
 
 .md :deep(code) {
   border: 1px solid black;
-  border-radius: .25rem;
-  padding-left: .25rem;
-  padding-right: .25rem;
+  border-radius: 0.25rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .md :deep(blockquote) {
-  border-left: .25rem solid;
-  padding-left: .5rem;
+  border-left: 0.25rem solid;
+  padding-left: 0.5rem;
   border-color: gray;
 }
 
@@ -52,6 +52,6 @@ $headings: "h1", "h2", "h3", "h4", "h5", "h6";
 .md :deep(td),
 .md :deep(th) {
   border: 1px black solid;
-  padding: .2rem;
+  padding: 0.2rem;
 }
 </style>
