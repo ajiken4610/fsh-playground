@@ -44,8 +44,8 @@ const createShaderMaterial = async (
   scene: Scene,
   uniforms: {
     [key: string]:
-    | { type: "float" | "vec2" | "vec3" | "vec4" | "mat"; value: number[] }
-    | { type: "sampler"; texture: BaseTexture };
+      | { type: "float" | "vec2" | "vec3" | "vec4" | "mat"; value: number[] }
+      | { type: "sampler"; texture: BaseTexture };
   },
 ) => {
   const ret = new ShaderMaterial(
@@ -74,25 +74,48 @@ void main() {
   );
 
   for (const uniformName of Object.keys(uniforms)) {
-    const uniform = uniforms[uniformName]!
+    const uniform = uniforms[uniformName]!;
     switch (uniform.type) {
       case "float":
-        ret.setFloat(uniformName, uniform?.value?.[0] || 0)
+        ret.setFloat(uniformName, uniform?.value?.[0] || 0);
         break;
       case "vec2":
-        ret.setVector2(uniformName, new Vector2(uniform?.value?.[0] || 0, uniform?.value?.[1] || 0))
+        ret.setVector2(
+          uniformName,
+          new Vector2(uniform?.value?.[0] || 0, uniform?.value?.[1] || 0),
+        );
         break;
       case "vec3":
-        ret.setVector3(uniformName, new Vector3(uniform?.value?.[0] || 0, uniform?.value?.[1] || 0, uniform?.value?.[2] || 0))
+        ret.setVector3(
+          uniformName,
+          new Vector3(
+            uniform?.value?.[0] || 0,
+            uniform?.value?.[1] || 0,
+            uniform?.value?.[2] || 0,
+          ),
+        );
         break;
       case "vec4":
-        ret.setVector4(uniformName, new Vector4(uniform?.value?.[0] || 0, uniform?.value?.[1] || 0, uniform?.value?.[2] || 0, uniform?.value?.[3] || 0))
+        ret.setVector4(
+          uniformName,
+          new Vector4(
+            uniform?.value?.[0] || 0,
+            uniform?.value?.[1] || 0,
+            uniform?.value?.[2] || 0,
+            uniform?.value?.[3] || 0,
+          ),
+        );
         break;
       case "mat":
-        ret.setMatrix(uniformName, Matrix.FromArray(uniform.value || [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]))
+        ret.setMatrix(
+          uniformName,
+          Matrix.FromArray(
+            uniform.value || [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+          ),
+        );
         break;
       case "sampler":
-        ret.setTexture(uniformName, uniform.texture!)
+        ret.setTexture(uniformName, uniform.texture!);
     }
   }
   return ret;
@@ -101,7 +124,7 @@ void main() {
 const updateLog = (reset?: boolean) => {
   emit("log", Logger.LogCache);
   reset && Logger.ClearLogCache();
-}
+};
 
 let lastMaterial: ShaderMaterial;
 onMounted(async () => {
@@ -112,15 +135,15 @@ onMounted(async () => {
   const engine = await createEngine(canvasElement);
   outerEngine = engine;
   const scene = new Scene(engine);
-  scene.clearColor.r = 0
+  scene.clearColor.r = 0;
   scene.clearColor.g = 0;
   scene.clearColor.b = 0;
   const camera = new FreeCamera("camera", new Vector3(0, 1, 0), scene);
   camera.mode = Camera.ORTHOGRAPHIC_CAMERA;
   camera.orthoBottom = 0;
-  camera.orthoTop = .5;
-  camera.orthoLeft = -.5;
-  camera.orthoRight = .5;
+  camera.orthoTop = 0.5;
+  camera.orthoLeft = -0.5;
+  camera.orthoRight = 0.5;
   camera.setTarget(Vector3.Zero());
   var plane = MeshBuilder.CreateGround("plane", { height: 1, width: 1 }, scene);
 
@@ -131,12 +154,13 @@ onMounted(async () => {
       lastMaterial = await createShaderMaterial(fsh, scene, {});
       plane.material = lastMaterial;
       setTimeout(() => {
-        updateLog(true)
-      }, 100)
-    }, { immediate: true }
+        updateLog(true);
+      }, 100);
+    },
+    { immediate: true },
   );
   engine.runRenderLoop(() => {
-    scene.render()
+    scene.render();
   });
 });
 
