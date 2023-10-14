@@ -1,6 +1,6 @@
 <template lang="pug">
-div(ref="editorParentRef")
-  CodeEditor(v-model="code" :languages="[['glsl','GLSL: openGLShadingLanguage']]")
+div(ref="editorParentRef" class="h-full")
+  CodeEditor(v-model="codePrevented" :languages="[['glsl','GLSL: openGLShadingLanguage']]" height="100%" width="100%" :line-nums="true")
 </template>
 
 <script setup lang="ts">
@@ -10,17 +10,22 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(["update:modelValue"]);
 const code = useVModel(props, "modelValue", emit);
+const codePrevented = ref("");
 const editorParentRef = ref<HTMLDivElement>();
 onMounted(() => {
+  watch(code, () => {
+    setTimeout(() => (codePrevented.value = code.value));
+  });
+  watch(codePrevented, () => {
+    setTimeout(() => (code.value = codePrevented.value));
+  });
+  let codeElement: HTMLSourceElement | undefined | null =
+    editorParentRef.value?.querySelector?.("pre > code.hljs");
   if (editorParentRef.value) {
-    const codeElement: HTMLSourceElement =
-      editorParentRef.value.querySelector("pre > code.hljs")!;
     watch(
-      code,
+      codePrevented,
       () => {
-        nextTick(() => {
-          delete codeElement.dataset["highlighted"];
-        });
+        codeElement && delete codeElement.dataset["highlighted"];
       },
       { immediate: true },
     );
