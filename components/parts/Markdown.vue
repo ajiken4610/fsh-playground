@@ -31,4 +31,27 @@ $headings: "h1", "h2", "h3", "h4", "h5", "h6";
     font-size: (8 - $headingIndex) * 0.5rem;
   }
 }
+
+.md :deep(code) {
+  border: 1px solid black;
+  border-radius: .25rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
+}
+
+.md :deep(blockquote) {
+  border-left: .25rem solid;
+  padding-left: .5rem;
+  border-color: gray;
+}
+
+.md :deep(table) {
+  border-spacing: 0px;
+}
+
+.md :deep(td),
+.md :deep(th) {
+  border: 1px black solid;
+  padding: .2rem;
+}
 </style>

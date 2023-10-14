@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ext \".js,.ts,.vue\" --ignore-path .gitignore .",
-    "lintfix": "prettier --write --list-different . && npm run lint -- --fix"
+    "lintfix": "prettier --write --list-different . && npm run lint -- --fix",
+    "genlicenseinfo": "license-checker --json --customPath license-format.json --out public/license-info.json"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -29,6 +30,7 @@
     "eslint-plugin-vue": "^9.17.0",
     "eslint-plugin-vue-pug": "^0.6.0",
     "highlight.js": "^11.9.0",
+    "license-checker": "^25.0.1",
     "marked": "^9.1.2",
     "marked-highlight": "^2.0.6",
     "nuxt": "^3.7.4",

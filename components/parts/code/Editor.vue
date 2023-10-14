@@ -15,7 +15,7 @@ const editorParentRef = ref<HTMLDivElement>();
 onMounted(() => {
   watch(code, () => {
     setTimeout(() => (codePrevented.value = code.value));
-  });
+  }, { immediate: true });
   watch(codePrevented, () => {
     setTimeout(() => (code.value = codePrevented.value));
   });
