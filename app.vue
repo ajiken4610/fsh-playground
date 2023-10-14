@@ -15,24 +15,29 @@ onMounted(() => {
     (headerElementHeight.value = headerElementRef.value.$el.offsetHeight);
   footerElementRef.value &&
     (footerElementHeight.value = footerElementRef.value.$el.offsetHeight);
-  console.log(headerElementRef.value)
+  console.log(headerElementRef.value);
   // console.log(footerElementHeight.value)
 });
 
-const windowHeight = ref(window.innerHeight)
+const windowHeight = ref(window.innerHeight);
 const onResize = () => {
-  windowHeight.value = window.innerHeight
-}
-addEventListener("resize", onResize)
+  windowHeight.value = window.innerHeight;
+};
+addEventListener("resize", onResize);
 onUnmounted(() => {
-  removeEventListener("resize", onResize)
-})
+  removeEventListener("resize", onResize);
+});
 
-const mainHeight = computed(() => (windowHeight.value - (headerElementHeight.value + footerElementHeight.value)) + "px")
+const mainHeight = computed(
+  () =>
+    windowHeight.value -
+    (headerElementHeight.value + footerElementHeight.value) +
+    "px",
+);
 </script>
 
 <style scoped lang="scss">
 .main-height {
-  height: v-bind(mainHeight)
+  height: v-bind(mainHeight);
 }
 </style>

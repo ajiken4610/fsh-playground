@@ -4,7 +4,7 @@ module.exports = {
     // 'eslint:recommended',
     "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
     // 'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
   ],
   rules: {
