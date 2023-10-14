@@ -1,3 +1,4 @@
 <template lang="pug">
-.overflow-auto Main
+.overflow-auto(ref="editorParentRef")
+  NuxtPage
 </template>

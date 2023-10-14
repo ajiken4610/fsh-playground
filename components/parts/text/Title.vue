@@ -1,4 +1,5 @@
 <template lang="pug">
-div
-  NuxtPage
+.text-xl
+  PartsText
+    slot
 </template>
