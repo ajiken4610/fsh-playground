@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
-div(v-html="parsed")
+.md(v-html="parsed")
 </template>
 
 <script setup lang="ts">
@@ -12,3 +12,15 @@ watchEffect(async () => {
   parsed.value = await parseMD(props.md);
 });
 </script>
+
+<style scoped lang="scss">
+.md :deep(ul) {
+  list-style-type: disc;
+  padding-left: 2rem;
+}
+
+.md :deep(ol) {
+  list-style-type: decimal;
+  padding-left: 1rem;
+}
+</style>

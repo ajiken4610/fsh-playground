@@ -1,4 +1,9 @@
 <template lang="pug">
-.overflow-auto(ref="editorParentRef")
+.overflow-hidden(ref="editorParentRef")
   NuxtPage
 </template>
+
+<script setup lang="ts">
+const code = ref("")
+provide("code", code)
+</script>

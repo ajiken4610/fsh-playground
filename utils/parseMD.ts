@@ -10,7 +10,7 @@ const marked = new Marked(
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
       return hljs.highlight(code, { language }).value;
     },
-  }),
+  })
 );
 const renderer = new Renderer();
 renderer.heading = (text, level) => {
@@ -18,6 +18,7 @@ renderer.heading = (text, level) => {
     (7 - level) * 0.5
   }rem">${text}</h${level}>`;
 };
+
 const sanitize = createDomPurify().sanitize;
 export default async (dirtyMD: string) =>
   sanitize(await marked.parse(dirtyMD, { renderer }));
