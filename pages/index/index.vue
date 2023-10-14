@@ -1,6 +1,9 @@
 <template lang="pug">
-.h-full
-  div(class="overflow-y-auto inline-block h-full w-1/2 md:h-full bg-gray-500")
-    PartsMarkdown(md="1. hello\n1. hello")
-  div(class="overflow-y-auto inline-block h-full w-1/2 md:h-full bg-gray-300")
+div(class="h-full")
+  div(class="inline-block h-full w-1/2 overflow-y-auto bg-gray-500 md:h-full")
+    PartsMarkdown(md="")
+  div(class="inline-block h-full w-1/2 overflow-y-auto bg-gray-300 md:h-full")
+    div(class="relative")
 </template>
+
+<script setup lang="ts"></script>

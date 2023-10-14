@@ -5,6 +5,7 @@ module.exports = {
     "plugin:vue/vue3-recommended",
     "plugin:vue-pug/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
     "prettier",
     // 'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
   ],

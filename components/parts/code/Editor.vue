@@ -14,7 +14,7 @@ const editorParentRef = ref<HTMLDivElement>();
 onMounted(() => {
   if (editorParentRef.value) {
     const codeElement: HTMLSourceElement =
-      editorParentRef.value.querySelector("pre > code.hljs");
+      editorParentRef.value.querySelector("pre > code.hljs")!;
     watch(
       code,
       () => {
