@@ -1,5 +1,5 @@
 <template lang="pug">
-div(class="overflow-hidden")
+.overflow-hidden
   NuxtPage(keepalive)
 </template>
 

@@ -1,13 +1,13 @@
 <template lang="pug">
-div(class="h-full")
-  div(class="inline-block h-1/2 w-full overflow-y-auto px-1 md:h-full md:w-1/2")
-    .square-outer(class="relative mx-auto w-[min(50vmin,100%)]")
-      div(class="absolute left-0 top-0 h-full w-full")
-        PartsCodeViewer(:code="code" @log="log")
+.h-full
+  .inline-block.w-full.overflow-y-auto.px-1(class="h-1/2 md:h-full md:w-1/2")
+    .square-outer.relative.mx-auto(class="w-[min(50vmin,100%)]")
+      .absolute.left-0.top-0.h-full.w-full
+        PartsCodeViewer(:code="code", @log="log")
     hr
     // eslint-disable-next-line
-    div(v-html="logHTML" class="flex flex-col-reverse")
-  div(class="inline-block h-1/2 w-full overflow-y-auto px-1 md:h-full md:w-1/2")
+    .flex.flex-col-reverse(v-html="logHTML")
+  .inline-block.w-full.overflow-y-auto.px-1(class="h-1/2 md:h-full md:w-1/2")
     PartsCodeEditor(v-model="code")
 </template>
 

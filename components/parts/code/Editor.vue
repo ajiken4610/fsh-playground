@@ -1,6 +1,12 @@
 <template lang="pug">
-div(ref="editorParentRef" class="h-full")
-  CodeEditor(v-model="codePrevented" :languages="[['glsl','GLSL: openGLShadingLanguage']]" height="100%" width="100%" :line-nums="true")
+.h-full(ref="editorParentRef")
+  CodeEditor(
+    v-model="codePrevented",
+    :languages="[['glsl', 'GLSL: openGLShadingLanguage']]",
+    height="100%",
+    width="100%",
+    :line-nums="true"
+  )
 </template>
 
 <script setup lang="ts">

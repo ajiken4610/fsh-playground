@@ -1,4 +1,4 @@
 <template lang="pug">
-div(class="m-4")
+.m-4
   LicenseInfo
 </template>

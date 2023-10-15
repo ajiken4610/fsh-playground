@@ -1,6 +1,6 @@
 <template lang="pug">
-div(class="h-full")
-  canvas(ref="canvasElementRef" class="h-full w-full")
+.h-full
+  canvas.h-full.w-full(ref="canvasElementRef")
 </template>
 
 <script setup lang="ts">
