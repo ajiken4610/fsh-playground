@@ -5297,6 +5297,19 @@
     "path": "D:\\Documents\\.node_projects\\fsh-playground\\node_modules\\humanize-ms",
     "licenseFile": "D:\\Documents\\.node_projects\\fsh-playground\\node_modules\\humanize-ms\\LICENSE"
   },
+  "husky@8.0.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/typicode/husky",
+    "publisher": "Typicode",
+    "email": "typicode@gmail.com",
+    "name": "husky",
+    "version": "8.0.3",
+    "description": "Modern native Git hooks made easy",
+    "copyright": "Copyright (c) 2021 typicode",
+    "licenseText": "MIT License\n\nCopyright (c) 2021 typicode\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+    "path": "D:\\Documents\\.node_projects\\fsh-playground\\node_modules\\husky",
+    "licenseFile": "D:\\Documents\\.node_projects\\fsh-playground\\node_modules\\husky\\LICENSE"
+  },
   "iconv-lite@0.6.3": {
     "licenses": "MIT",
     "repository": "https://github.com/ashtuchkin/iconv-lite",
