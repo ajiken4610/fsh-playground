@@ -1,5 +1,4 @@
 import { Marked } from "marked";
-import createDomPurify from "dompurify";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
@@ -13,5 +12,5 @@ const marked = new Marked(
   }),
 );
 
-const sanitize = createDomPurify().sanitize;
-export default async (dirtyMD: string) => sanitize(await marked.parse(dirtyMD));
+export default async (dirtyMD: string) =>
+  sanitizeHTML(await marked.parse(dirtyMD));

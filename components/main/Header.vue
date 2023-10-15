@@ -1,8 +1,8 @@
 <template lang="pug">
 div
-  .flex.h-16.flex-row.flex-nowrap.items-center
-    .flex-none.px-2
-      PartsMarkdown.inline-block(md="#### **Fragment Shader Playground**")
-      PartsMarkdown.inline-block.pl-2(md="Runs `GLSL Fragment Shader` easily.")
+  .px-2
+    .flex.h-16.flex-row.items-center.overflow-x-auto.overflow-y-hidden.w-auto
+      PartsMarkdown.flex-none(md="#### **Fragment Shader Playground**")
+      PartsMarkdown.flex-none.pl-2(md="Runs `GLSL Fragment Shader` easily.")
   hr.py-1
 </template>

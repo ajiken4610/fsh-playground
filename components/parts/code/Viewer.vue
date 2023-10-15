@@ -6,18 +6,15 @@
 <script setup lang="ts">
 import { refDebounced } from "@vueuse/core";
 import {
-  BaseTexture,
   Camera,
   Engine,
   FreeCamera,
   Logger,
-  Matrix,
   MeshBuilder,
   Scene,
   ShaderMaterial,
   Vector2,
   Vector3,
-  Vector4,
 } from "babylonjs";
 const props = defineProps<{ code: string }>();
 const emit = defineEmits<(e: "log", value: string) => void>();
@@ -42,11 +39,7 @@ const createEngine = async (canvas: HTMLCanvasElement) => {
 const createShaderMaterial = async (
   fsh: string,
   scene: Scene,
-  uniforms: {
-    [key: string]:
-      | { type: "float" | "vec2" | "vec3" | "vec4" | "mat"; value: number[] }
-      | { type: "sampler"; texture: BaseTexture };
-  },
+  uniforms: string[],
 ) => {
   const ret = new ShaderMaterial(
     "shader-" + Math.random().toString(36).substring(2),
@@ -69,55 +62,9 @@ void main() {
     },
     {
       attributes: ["position", "normal", "uv"],
-      uniforms: ["worldViewProjection"].concat(...Object.keys(uniforms)),
+      uniforms: ["worldViewProjection"].concat(uniforms),
     },
   );
-
-  for (const uniformName of Object.keys(uniforms)) {
-    const uniform = uniforms[uniformName]!;
-    switch (uniform.type) {
-      case "float":
-        ret.setFloat(uniformName, uniform?.value?.[0] || 0);
-        break;
-      case "vec2":
-        ret.setVector2(
-          uniformName,
-          new Vector2(uniform?.value?.[0] || 0, uniform?.value?.[1] || 0),
-        );
-        break;
-      case "vec3":
-        ret.setVector3(
-          uniformName,
-          new Vector3(
-            uniform?.value?.[0] || 0,
-            uniform?.value?.[1] || 0,
-            uniform?.value?.[2] || 0,
-          ),
-        );
-        break;
-      case "vec4":
-        ret.setVector4(
-          uniformName,
-          new Vector4(
-            uniform?.value?.[0] || 0,
-            uniform?.value?.[1] || 0,
-            uniform?.value?.[2] || 0,
-            uniform?.value?.[3] || 0,
-          ),
-        );
-        break;
-      case "mat":
-        ret.setMatrix(
-          uniformName,
-          Matrix.FromArray(
-            uniform.value || [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-          ),
-        );
-        break;
-      case "sampler":
-        ret.setTexture(uniformName, uniform.texture!);
-    }
-  }
   return ret;
 };
 
@@ -126,7 +73,7 @@ const updateLog = (reset?: boolean) => {
   reset && Logger.ClearLogCache();
 };
 
-let lastMaterial: ShaderMaterial;
+let currentMaterial: ShaderMaterial;
 onMounted(async () => {
   if (!canvasElementRef.value) {
     return;
@@ -146,13 +93,18 @@ onMounted(async () => {
   camera.orthoRight = 0.5;
   camera.setTarget(Vector3.Zero());
   var plane = MeshBuilder.CreateGround("plane", { height: 1, width: 1 }, scene);
-
+  const updateUniforms = () => {
+    if (currentMaterial) {
+      currentMaterial.setVector2("resolution", new Vector2(canvasElement.width, canvasElement.height))
+    }
+  }
   watch(
     refDebounced(code, 2000),
     async (fsh) => {
-      lastMaterial && lastMaterial.dispose();
-      lastMaterial = await createShaderMaterial(fsh, scene, {});
-      plane.material = lastMaterial;
+      currentMaterial && currentMaterial.dispose();
+      currentMaterial = await createShaderMaterial(fsh, scene, ["resolution"]);
+      plane.material = currentMaterial;
+      updateUniforms()
       setTimeout(() => {
         updateLog(true);
       }, 100);
@@ -162,9 +114,16 @@ onMounted(async () => {
   engine.runRenderLoop(() => {
     scene.render();
   });
+  const resizeObserver = new ResizeObserver(() => {
+    updateUniforms()
+  })
+  resizeObserver.observe(canvasElement)
+
 });
 
 onUnmounted(() => {
   outerEngine.dispose();
 });
+
+
 </script>
