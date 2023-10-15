@@ -95,16 +95,19 @@ onMounted(async () => {
   var plane = MeshBuilder.CreateGround("plane", { height: 1, width: 1 }, scene);
   const updateUniforms = () => {
     if (currentMaterial) {
-      currentMaterial.setVector2("resolution", new Vector2(canvasElement.width, canvasElement.height))
+      currentMaterial.setVector2(
+        "resolution",
+        new Vector2(canvasElement.width, canvasElement.height),
+      );
     }
-  }
+  };
   watch(
     refDebounced(code, 2000),
     async (fsh) => {
       currentMaterial && currentMaterial.dispose();
       currentMaterial = await createShaderMaterial(fsh, scene, ["resolution"]);
       plane.material = currentMaterial;
-      updateUniforms()
+      updateUniforms();
       setTimeout(() => {
         updateLog(true);
       }, 100);
@@ -115,15 +118,12 @@ onMounted(async () => {
     scene.render();
   });
   const resizeObserver = new ResizeObserver(() => {
-    updateUniforms()
-  })
-  resizeObserver.observe(canvasElement)
-
+    updateUniforms();
+  });
+  resizeObserver.observe(canvasElement);
 });
 
 onUnmounted(() => {
   outerEngine.dispose();
 });
-
-
 </script>

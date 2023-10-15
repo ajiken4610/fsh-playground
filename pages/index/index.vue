@@ -4,7 +4,8 @@
     .square-outer.relative.mx-auto(class="w-[min(50vmin,100%)]")
       .absolute.left-0.top-0.h-full.w-full
         PartsCodeViewer(:code="code", @log="log")
-    hr
+    .py-2
+      hr
     // eslint-disable-next-line
     .flex.flex-col-reverse(v-html="logHTML")
   .inline-block.w-full.overflow-y-auto.px-1(class="h-1/2 md:h-full md:w-1/2")
